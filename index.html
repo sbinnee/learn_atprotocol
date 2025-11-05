@@ -40,10 +40,19 @@
                         <button type="submit" class="btn btn-primary">Login</button>
                         <div id="login-error" class="error-message"></div>
                     </form>
+
+                    <div class="divider">
+                        <span>OR</span>
+                    </div>
+
+                    <button id="demo-mode-btn" class="btn btn-demo">
+                        Try Demo Mode (No Account Needed)
+                    </button>
+
                     <div class="info-box">
                         <h3>Don't have a Bluesky account?</h3>
-                        <p>Visit <a href="https://bsky.app" target="_blank">bsky.app</a> to create an account.</p>
-                        <p>Then go to Settings → App Passwords to create an app password for this app.</p>
+                        <p><strong>Demo Mode:</strong> Test the app locally without signing up for anything!</p>
+                        <p><strong>Real Mode:</strong> Visit <a href="https://bsky.app" target="_blank">bsky.app</a> to create an account, then go to Settings → App Passwords to create an app password.</p>
                     </div>
                 </div>
             </div>
@@ -106,6 +115,7 @@
         </div>
     </div>
 
+    <script src="demo-mode.js"></script>
     <script type="module" src="app.js"></script>
 </body>
 </html>

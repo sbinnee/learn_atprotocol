@@ -41,8 +41,29 @@ This app demonstrates the following AT Protocol concepts in action:
 
 ## Getting Started
 
-### Prerequisites
+### Two Ways to Use This App
 
+#### Option 1: Demo Mode (Recommended for Learning!) ⭐
+
+**No account needed!** Demo mode lets you explore all features locally with sample data.
+
+**What is Demo Mode?**
+- Simulates a local Personal Data Server (PDS) using browser localStorage
+- Includes 10 sample posts from demo users
+- All features work: posting, liking, reposting, profile viewing
+- Perfect for learning AT Protocol concepts without setup
+- No internet connection required after initial load
+
+**How to Use Demo Mode:**
+1. Follow installation steps below
+2. Click "Try Demo Mode (No Account Needed)" on the login page
+3. Explore all features with pre-populated demo data!
+
+#### Option 2: Real Mode with Bluesky Account
+
+Connect to the actual Bluesky network and interact with real users.
+
+**Prerequisites:**
 1. **Bluesky Account**: You need a Bluesky account to use this app
    - Sign up at [bsky.app](https://bsky.app) if you don't have one
 
@@ -129,6 +150,36 @@ This app demonstrates the following AT Protocol concepts in action:
 2. Statistics are calculated across all repositories
 3. Profile can be viewed by anyone with your handle or DID
 
+### Demo Mode (Local Simulation)
+
+**How Demo Mode Works:**
+
+Demo mode provides a complete local simulation of AT Protocol without requiring any external services. Here's what happens under the hood:
+
+1. **Mock Agent**: Instead of `BskyAgent`, we use `MockAgent` class that simulates all API calls
+2. **Local Storage**: All data (posts, likes, reposts) is stored in browser localStorage
+3. **Sample Data**: Pre-populated with 10 demo posts from fictional users
+4. **No Network Calls**: Everything runs locally - perfect for offline learning
+
+**Technical Implementation:**
+- `demo-mode.js` contains the `MockAgent` class
+- Implements the same API as `BskyAgent` (login, post, getTimeline, like, etc.)
+- Uses async/await with simulated delays to mimic network requests
+- Data persists between sessions using localStorage
+
+**What You Can Learn:**
+- AT Protocol concepts without needing a real account
+- How repositories store posts and interactions
+- The structure of feeds and timelines
+- Profile management and statistics
+- All while running completely offline!
+
+Demo mode is ideal for:
+- Learning AT Protocol basics
+- Testing the app without affecting real data
+- Developing and debugging features
+- Understanding the protocol architecture
+
 ## Project Structure
 
 ```
@@ -136,6 +187,7 @@ learn_atprotocol/
 ├── index.html          # Main HTML structure
 ├── style.css           # Styling and UI design
 ├── app.js              # Application logic and AT Protocol integration
+├── demo-mode.js        # Mock AT Protocol agent for local testing
 ├── server.js           # Simple Node.js HTTP server
 ├── package.json        # Dependencies and scripts
 ├── APP_GUIDE.md        # This file

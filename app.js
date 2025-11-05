@@ -6,6 +6,7 @@ import { BskyAgent } from 'https://cdn.skypack.dev/@atproto/api';
 // App State
 let agent = null;
 let currentUser = null;
+let isDemoMode = false;
 
 // Initialize the app
 document.addEventListener('DOMContentLoaded', () => {
@@ -31,6 +32,9 @@ function initializeApp() {
 function setupEventListeners() {
     // Login form
     document.getElementById('login-form').addEventListener('submit', handleLogin);
+
+    // Demo mode button
+    document.getElementById('demo-mode-btn').addEventListener('click', handleDemoMode);
 
     // Logout button
     document.getElementById('logout-btn').addEventListener('click', handleLogout);
@@ -68,6 +72,8 @@ async function handleLogin(e) {
     errorDiv.textContent = '';
 
     try {
+        isDemoMode = false;
+
         // Create a new agent instance
         agent = new BskyAgent({
             service: 'https://bsky.social'
@@ -83,6 +89,7 @@ async function handleLogin(e) {
 
         // Save session to localStorage
         localStorage.setItem('atproto-session', JSON.stringify(response.data));
+        localStorage.setItem('atproto-demo-mode', 'false');
 
         // Show main app
         showMainApp();
@@ -94,26 +101,67 @@ async function handleLogin(e) {
     }
 }
 
-async function resumeSession(session) {
+async function handleDemoMode() {
     try {
-        agent = new BskyAgent({
-            service: 'https://bsky.social'
+        isDemoMode = true;
+
+        // Create mock agent instance
+        agent = new window.MockAgent();
+
+        // Login with demo credentials
+        const response = await agent.login({
+            identifier: 'demo.user',
+            password: 'demo'
         });
 
-        await agent.resumeSession(session);
+        currentUser = response.data;
+
+        // Save demo session
+        localStorage.setItem('atproto-session', JSON.stringify(response.data));
+        localStorage.setItem('atproto-demo-mode', 'true');
+
+        // Show main app
+        showMainApp();
+
+    } catch (error) {
+        console.error('Demo mode error:', error);
+        alert('Failed to start demo mode: ' + error.message);
+    }
+}
+
+async function resumeSession(session) {
+    try {
+        // Check if this was a demo mode session
+        const wasDemoMode = localStorage.getItem('atproto-demo-mode') === 'true';
+
+        if (wasDemoMode) {
+            isDemoMode = true;
+            agent = new window.MockAgent();
+            await agent.resumeSession(session);
+        } else {
+            isDemoMode = false;
+            agent = new BskyAgent({
+                service: 'https://bsky.social'
+            });
+            await agent.resumeSession(session);
+        }
+
         currentUser = session;
         showMainApp();
     } catch (error) {
         console.error('Session resume error:', error);
         localStorage.removeItem('atproto-session');
+        localStorage.removeItem('atproto-demo-mode');
     }
 }
 
 function handleLogout() {
     // Clear session
     localStorage.removeItem('atproto-session');
+    localStorage.removeItem('atproto-demo-mode');
     agent = null;
     currentUser = null;
+    isDemoMode = false;
 
     // Show login screen
     document.getElementById('main-section').classList.remove('active');
@@ -129,7 +177,8 @@ function showMainApp() {
     document.getElementById('main-section').classList.add('active');
 
     // Display user handle
-    document.getElementById('user-handle').textContent = `@${currentUser.handle}`;
+    const handleText = isDemoMode ? `@${currentUser.handle} (Demo Mode)` : `@${currentUser.handle}`;
+    document.getElementById('user-handle').textContent = handleText;
 
     // Load initial data
     loadFeed();

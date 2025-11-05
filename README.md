@@ -23,6 +23,8 @@ A working social media web app demonstrating:
 
 ## Quick Start
 
+### Option 1: Demo Mode (No Account Needed!) ⭐
+
 1. **Install dependencies**:
    ```bash
    npm install
@@ -35,12 +37,27 @@ A working social media web app demonstrating:
 
 3. **Open your browser**:
    - Go to `http://localhost:3000`
-   - Login with your Bluesky account credentials
+   - Click "Try Demo Mode (No Account Needed)"
+   - Explore the app with sample data!
+
+**Demo mode** simulates a local AT Protocol server with sample posts and users. All interactions work locally without any internet connection or account!
+
+### Option 2: Real Mode with Bluesky
+
+1. **Create a Bluesky account** at [bsky.app](https://bsky.app)
+2. **Create an app password** in Settings → App Passwords
+3. **Start the server** (see Option 1)
+4. **Login** with your handle and app password
 
 For detailed instructions, see [APP_GUIDE.md](APP_GUIDE.md).
 
 ## Prerequisites
 
+### Demo Mode
+- Node.js installed
+- **No account needed!** Perfect for learning and testing
+
+### Real Mode
 - Node.js installed
 - A Bluesky account ([sign up at bsky.app](https://bsky.app))
 - An app password (create in Bluesky Settings → App Passwords)
