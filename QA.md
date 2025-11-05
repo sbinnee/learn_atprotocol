@@ -4,6 +4,119 @@
 
 ## 2025-11-05
 
+**Question:** If I want to make an application based on AT Protocol, is it the same as making a new App View?
+
+**Answer:**
+
+Not necessarily - it depends on what type of application you want to build. An **App View** is just one type of application in the AT Protocol ecosystem.
+
+### Types of Applications You Can Build:
+
+#### 1. App View (Full Social Platform)
+**What it is:** A comprehensive social media platform that aggregates data from across the entire network.
+
+**Examples:**
+- Bluesky (the main social media app)
+- A Twitter-like clone
+- A Foursquare clone on AT Protocol
+- Any full-featured social platform
+
+**When to build one:**
+- You want to create a complete social media experience
+- You need network-wide aggregation (likes, reposts, followers)
+- You want content discovery and user search features
+- You're building a platform that competes with/complements Bluesky
+
+**What it requires:**
+- Consuming data from Relays (the firehose)
+- Processing and aggregating network-wide information
+- Providing an XRPC API for clients
+- Significant infrastructure for indexing
+
+#### 2. Client Application (User Interface)
+**What it is:** A mobile app, desktop app, or web interface that connects to existing App Views/PDS.
+
+**Examples:**
+- Alternative mobile clients for Bluesky
+- Desktop applications
+- Web interfaces with different UX
+
+**When to build one:**
+- You want a different user experience for existing data
+- You're focusing on UI/UX improvements
+- You don't need to run your own infrastructure
+
+#### 3. Feed Generator (Custom Algorithm)
+**What it is:** A service that provides custom content algorithms.
+
+**How it works:**
+- Receives requests from users' PDS
+- Returns a list of post URIs based on your algorithm
+- Users can subscribe to your custom feed
+
+**Examples:**
+- Specialized interest feeds (tech news, art, etc.)
+- Algorithmic ranking different from Bluesky's default
+- Curated content feeds
+
+#### 4. Bot (Automated Account)
+**What it is:** An automated account that posts or responds to content.
+
+**Examples:**
+- News bots that post updates
+- Reminder bots
+- Interactive bots that respond to mentions
+
+**Tools available:**
+- ProtoRune (Elixir framework)
+- Various bot SDKs and frameworks
+
+#### 5. Labeler (Content Moderation)
+**What it is:** A service that labels content for moderation purposes.
+
+**Purpose:**
+- Apply content warnings
+- Flag inappropriate content
+- Custom moderation rules
+
+#### 6. Personal Data Server (PDS) Implementation
+**What it is:** Running your own server to host user repositories.
+
+**When to build one:**
+- You want to provide hosting services
+- You need complete control over data storage
+- You're building infrastructure for others
+
+### Building Your Application: Key Steps
+
+According to AT Protocol guides, when building an application:
+
+1. **Design Lexicon schemas** - Define the data structures for your records
+2. **Create a database** - For aggregating records into useful views
+3. **Build your application** - Write records to users' repositories
+4. **Listen to the firehose** - Aggregate data across the network (if needed)
+
+### So, Is It the Same as Making an App View?
+
+**Short answer:** Only if you're building a full social platform that needs network-wide data aggregation.
+
+**If you're building:**
+- A simple bot → No App View needed
+- A custom feed → You're making a Feed Generator, not an App View
+- A mobile client → You're making a Client, not an App View
+- A complete social platform → Yes, you're making an App View
+
+**References:**
+- [AT Protocol Applications Guide](https://atproto.com/guides/applications)
+- [GitHub: AT Protocol Ecosystem](https://github.com/bluesky-social/atproto-ecosystem)
+- [TechCrunch: Apps Building on AT Protocol](https://techcrunch.com/2025/06/13/beyond-bluesky-these-are-the-apps-building-social-experiences-on-the-at-protocol/)
+
+**Tags:** #development #appview #architecture #applications #feed-generator #bot #client
+
+---
+
+## 2025-11-05
+
 **Question:** Can you clarify terms (PDS, relays, AppViews, etc.)?
 
 **Answer:**
