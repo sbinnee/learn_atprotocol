@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AT Protocol Social App</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="app">
+        <!-- Login Section -->
+        <div id="login-section" class="section active">
+            <div class="container">
+                <h1>AT Protocol Social App</h1>
+                <p class="subtitle">A simple social media app demonstrating AT Protocol concepts</p>
+
+                <div class="login-card">
+                    <h2>Login to Your Account</h2>
+                    <form id="login-form">
+                        <div class="form-group">
+                            <label for="identifier">Handle or Email</label>
+                            <input
+                                type="text"
+                                id="identifier"
+                                placeholder="yourhandle.bsky.social or email"
+                                required
+                            >
+                            <small>Enter your Bluesky handle (e.g., alice.bsky.social) or email</small>
+                        </div>
+                        <div class="form-group">
+                            <label for="password">App Password</label>
+                            <input
+                                type="password"
+                                id="password"
+                                placeholder="App password"
+                                required
+                            >
+                            <small>Use an app password from your Bluesky settings, not your main password</small>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Login</button>
+                        <div id="login-error" class="error-message"></div>
+                    </form>
+                    <div class="info-box">
+                        <h3>Don't have a Bluesky account?</h3>
+                        <p>Visit <a href="https://bsky.app" target="_blank">bsky.app</a> to create an account.</p>
+                        <p>Then go to Settings → App Passwords to create an app password for this app.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main App Section -->
+        <div id="main-section" class="section">
+            <nav class="navbar">
+                <div class="nav-content">
+                    <h1 class="nav-title">AT Protocol Social</h1>
+                    <div class="nav-user">
+                        <span id="user-handle"></span>
+                        <button id="logout-btn" class="btn btn-small">Logout</button>
+                    </div>
+                </div>
+            </nav>
+
+            <div class="container">
+                <div class="tabs">
+                    <button class="tab-btn active" data-tab="feed">Feed</button>
+                    <button class="tab-btn" data-tab="post">Create Post</button>
+                    <button class="tab-btn" data-tab="profile">Profile</button>
+                </div>
+
+                <!-- Feed Tab -->
+                <div id="feed-tab" class="tab-content active">
+                    <h2>Your Timeline</h2>
+                    <button id="refresh-feed-btn" class="btn btn-secondary">Refresh Feed</button>
+                    <div id="feed-container" class="feed">
+                        <p class="loading">Loading feed...</p>
+                    </div>
+                </div>
+
+                <!-- Create Post Tab -->
+                <div id="post-tab" class="tab-content">
+                    <h2>Create a Post</h2>
+                    <div class="post-composer">
+                        <textarea
+                            id="post-text"
+                            placeholder="What's on your mind?"
+                            maxlength="300"
+                            rows="5"
+                        ></textarea>
+                        <div class="post-composer-footer">
+                            <span id="char-count">0/300</span>
+                            <button id="create-post-btn" class="btn btn-primary">Post</button>
+                        </div>
+                        <div id="post-status" class="status-message"></div>
+                    </div>
+                </div>
+
+                <!-- Profile Tab -->
+                <div id="profile-tab" class="tab-content">
+                    <h2>Your Profile</h2>
+                    <div id="profile-container" class="profile">
+                        <p class="loading">Loading profile...</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="app.js"></script>
+</body>
+</html>

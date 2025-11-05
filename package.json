@@ -1,0 +1,16 @@
+{
+  "name": "atprotocol-social-app",
+  "version": "1.0.0",
+  "description": "A simple social media app built with AT Protocol",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "keywords": ["atprotocol", "bluesky", "social-media"],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "@atproto/api": "^0.12.0"
+  }
+}
