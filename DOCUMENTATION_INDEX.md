@@ -27,7 +27,13 @@ Welcome! This project has comprehensive documentation to help you learn and buil
   - Copy-paste code snippets
   - Common patterns and recipes
 
-### Data Export
+### Data Collection & Export
+
+- **[BACKFILL_GUIDE.md](BACKFILL_GUIDE.md)** - How to fetch posts from the past
+  - Replay historical data using cursor parameter
+  - Build archives of past posts
+  - Resume from specific timestamps
+  - Complete workflow examples
 
 - **[EXPORT_GUIDE.md](EXPORT_GUIDE.md)** - How to export SQLite to JSON/CSV
   - Multiple export methods
@@ -39,6 +45,7 @@ Welcome! This project has comprehensive documentation to help you learn and buil
 ### Source Code (TypeScript)
 
 - **[src/index.ts](src/index.ts)** - Main firehose listener (with detailed comments)
+- **[src/backfill.ts](src/backfill.ts)** - Historical data collection (with cursor)
 - **[src/db.ts](src/db.ts)** - Database setup and queries
 - **[src/query.ts](src/query.ts)** - CLI tool to view data
 - **[src/export.ts](src/export.ts)** - Export data to JSON
@@ -61,6 +68,12 @@ Welcome! This project has comprehensive documentation to help you learn and buil
 → Use [QUICK_REFERENCE.md](QUICK_REFERENCE.md):
   - Event Object Structure
   - Accessing Event Attributes in Code
+
+**Collect posts from the past**
+→ See [BACKFILL_GUIDE.md](BACKFILL_GUIDE.md):
+  - Fetch historical data with cursor
+  - Build archives
+  - Workflow examples
 
 **Export my data**
 → See [EXPORT_GUIDE.md](EXPORT_GUIDE.md)
