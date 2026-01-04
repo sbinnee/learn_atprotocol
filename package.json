@@ -9,6 +9,7 @@
     "start": "node dist/index.js",
     "dev": "tsc && node dist/index.js",
     "backfill": "tsc && node dist/backfill.js",
+    "explore": "tsc && node dist/explore-types.js",
     "query": "node dist/query.js",
     "export": "node dist/export.js"
   },
